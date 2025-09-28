@@ -1,169 +1,197 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Carta para Fernanda 💖</title>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Georgia', serif;
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
-    background-size: 600% 600%;
-    animation: gradientAnim 20s ease infinite;
-    color: #4d1f2f;
-    text-align: center;
-    overflow-x: hidden;
-  }
+  <meta charset="UTF-8">
+  <title>Carta para Fernanda 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
+      background-size: 600% 600%;
+      animation: gradientAnim 20s ease infinite;
+      color: #4d1f2f;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-  @keyframes gradientAnim {
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-  }
+    @keyframes gradientAnim {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-  h1 {
-    color: #d6336c;
-    text-shadow: 2px 2px 5px #fff;
-    margin-top: 20px;
-  }
+    h1 {
+      color: #d6336c;
+      text-shadow: 2px 2px 5px #fff;
+      margin-top: 20px;
+    }
 
-  .sobre {
-    width: 400px;
-    max-width: 90%;
-    height: 240px;
-    background: #f9c5d1;
-    margin: 50px auto;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-    overflow: hidden;
-    border-radius: 12px;
-  }
+    .sobre {
+      width: 90vw;
+      height: 90vh;
+      background: #f9c5d1;
+      margin: 30px auto;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      border-radius: 20px;
+      transition: all 1s ease;
+    }
 
-  .tapa {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 200px solid transparent;
-    border-right: 200px solid transparent;
-    border-bottom: 120px solid #d6336c;
-    transition: transform 1s;
-    transform-origin: top;
-    z-index: 2;
-  }
+    .tapa {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 45vw solid transparent;
+      border-right: 45vw solid transparent;
+      border-bottom: 45vh solid #d6336c;
+      transition: transform 1s;
+      transform-origin: top;
+      z-index: 2;
+    }
 
-  .sobre.abierto .tapa { transform: rotateX(180deg); }
+    .sobre.abierto .tapa {
+      transform: rotateX(180deg);
+    }
 
-  /* Pergamino estilo rollo antiguo */
-  .carta {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 360px;
-    max-width: 90%;
-    height: 700px;
-    background: linear-gradient(to bottom, #fff4e1 0%, #fbe8c5 50%, #fff4e1 100%);
-    border: 2px solid #d3a15d;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-    font-size: 17px;
-    line-height: 1.6;
-    padding: 40px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    transform: translate(-50%, -50%) scaleY(0) scaleX(0.5);
-    transform-origin: center top;
-    transition: transform 1s ease;
-    z-index: 1;
-  }
+    .carta {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 90vw;
+      height: 90vh;
+      background: linear-gradient(to bottom, #fff4e1 0%, #fbe8c5 50%, #fff4e1 100%);
+      border: 12px double #d3a15d;
+      border-radius: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+      font-size: 18px;
+      line-height: 1.8;
+      padding: 60px 40px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      transform: translate(-50%, -50%) scaleY(0) scaleX(0.5);
+      transform-origin: center top;
+      transition: transform 1s ease;
+      z-index: 1;
+    }
 
-  .sobre.abierto .carta {
-    transform: translate(-50%, -50%) scaleY(1) scaleX(1);
-  }
+    .sobre.abierto .carta {
+      transform: translate(-50%, -50%) scaleY(1) scaleX(1);
+    }
 
-  button {
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: #d6336c;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
-  }
+    button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      background: #d6336c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
 
-  button:hover { background: #b02552; }
+    button:hover {
+      background: #b02552;
+    }
 
-  /* Decoraciones flotantes */
-  .decoracion {
-    position: fixed;
-    font-size: 35px;
-    animation: flotar 6s linear infinite;
-    z-index: 0;
-    opacity: 0.9;
-  }
+    .decoracion, .heart {
+      position: fixed;
+      z-index: 0;
+      opacity: 0.9;
+    }
 
-  @keyframes flotar {
-    0% { transform: translateY(0) rotate(0deg);}
-    50% { transform: translateY(-50px) rotate(15deg);}
-    100% { transform: translateY(0) rotate(0deg);}
-  }
+    .heart {
+      font-size: 30px;
+      animation: volar 2s ease-out forwards;
+    }
 
-</style>
+    @keyframes volar {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+
+    @keyframes flotar {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-50px) rotate(15deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+  </style>
 </head>
 <body>
 
-<h1>Para Fernanda 💖</h1>
-<p>Haz clic en el sobre para abrir tu carta 💌</p>
+  <h1>Para Fernanda 💖</h1>
+  <p>Haz clic en el sobre para abrir tu carta 💌</p>
 
-<!-- Decoraciones flotantes -->
-<script>
-const decoraciones = ["❤️","💛","💚","💜","💖","🌹","💐","🌸","🌺","✨","🌟"];
-for(let i=0;i<40;i++){
-  const d = document.createElement("div");
-  d.classList.add("decoracion");
-  d.innerHTML = decoraciones[Math.floor(Math.random()*decoraciones.length)];
-  d.style.left = Math.random()*95 + "vw";
-  d.style.top = Math.random()*90 + "vh";
-  d.style.fontSize = (25 + Math.random()*50) + "px";
-  d.style.animationDuration = (4 + Math.random()*6) + "s";
-  document.body.appendChild(d);
-}
-</script>
+  <!-- Decoraciones flotantes iniciales -->
+  <script>
+    const decoraciones = ["❤️", "💛", "💚", "💜", "💖", "🌹", "💐", "🌸", "🌺", "✨", "🌟"];
+    for (let i = 0; i < 30; i++) {
+      const d = document.createElement("div");
+      d.classList.add("decoracion");
+      d.innerHTML = decoraciones[Math.floor(Math.random() * decoraciones.length)];
+      d.style.left = Math.random() * 95 + "vw";
+      d.style.top = Math.random() * 90 + "vh";
+      d.style.fontSize = (25 + Math.random() * 50) + "px";
+      d.style.animation = `flotar ${(4 + Math.random() * 6)}s linear infinite`;
+      document.body.appendChild(d);
+    }
+  </script>
 
-<div class="sobre" onclick="abrirSobre(this)">
-  <div class="tapa"></div>
-  <div class="carta">
-    <h2>Mi querida Fernanda 💌</h2>
-    <div style="text-align:left; margin-top:20px;">
-      <p>
-        Desde que llegaste a mi vida, cada día ha sido un arcoíris de emociones y momentos inolvidables. Tu risa ilumina mis días más grises, y tu abrazo es mi refugio seguro.<br><br>
-        Cada conversación contigo, cada gesto de cariño y cada instante compartido, me recuerda lo afortunado que soy de tenerte a mi lado. Mi amor por ti es inmenso, profundo y constante.<br><br>
-        A través de esta carta quiero que sientas lo especial que eres. Eres mi alegría, mi inspiración y la razón por la que sonrío cada día. No hay palabras suficientes para describir lo que significas para mí.<br><br>
-        Gracias por cada sonrisa, cada mirada y cada momento que hemos compartido. Cada recuerdo contigo es un tesoro que guardo con todo mi corazón.<br><br>
-        Prometo cuidarte, apoyarte y amarte siempre. Que esta carta sea un pequeño reflejo de la grandeza de mi amor por ti, eterno e infinito.<br><br>
-        Te amo con todo mi corazón, Fernanda, hoy, mañana y siempre. 💖💖💖💖<br><br>
-        Siempre tuyo,<br>
-        <b>Cardielo</b>
-      </p>
-      <button onclick="cerrarPagina()">Salir 💌</button>
+  <!-- Sobre grande -->
+  <div class="sobre" onclick="abrirSobre(this)">
+    <div class="tapa"></div>
+    <div class="carta">
+      <h2>Mi querida Fernanda 💌</h2>
+      <div style="text-align:left; margin-top:20px;">
+        <p>
+          Desde que llegaste a mi vida, cada día ha sido un arcoíris de emociones y momentos inolvidables. Tu risa ilumina mis días más grises, y tu abrazo es mi refugio seguro.<br><br>
+          Cada conversación contigo, cada gesto de cariño y cada instante compartido, me recuerda lo afortunado que soy de tenerte a mi lado. Mi amor por ti es inmenso, profundo y constante.<br><br>
+          A través de esta carta quiero que sientas lo especial que eres. Eres mi alegría, mi inspiración y la razón por la que sonrío cada día. No hay palabras suficientes para describir lo que significas para mí.<br><br>
+          Gracias por cada sonrisa, cada mirada y cada momento que hemos compartido. Cada recuerdo contigo es un tesoro que guardo con todo mi corazón.<br><br>
+          Prometo cuidarte, apoyarte y amarte siempre. Que esta carta sea un pequeño reflejo de la grandeza de mi amor por ti, eterno e infinito.<br><br>
+          Te amo con todo mi corazón, Fernanda, hoy, mañana y siempre. 💖💖💖💖<br><br>
+          Siempre tuyo,<br>
+          <b>Cardielo</b>
+        </p>
+        <button onclick="cerrarPagina()">Salir 💌</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-function abrirSobre(el){
-  el.classList.toggle("abierto");
-}
+  <!-- Script de interacción -->
+  <script>
+    function abrirSobre(el) {
+      if (el.classList.contains("abierto")) return;
 
-function cerrarPagina(){
-  window.close(); // cierra la pestaña del navegador
-}
-</script>
+      const confirmar = confirm("¿Deseas abrir esta carta?");
+      if (!confirmar) return;
+
+      el.classList.add("abierto");
+      lanzarCorazones();
+    }
+
+    function cerrarPagina() {
+      window.close(); // Solo funciona si la pestaña fue abierta por JS
+    }
+
+    function lanzarCorazones() {
+      for (let i = 0; i < 50; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = (window.innerWidth / 2 - 30 + Math.random() * 60) + "px";
+        heart.style.top = (window.innerHeight / 2 - 30 + Math.random() * 60) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+      }
+    }
+  </script>
 
 </body>
 </html>
