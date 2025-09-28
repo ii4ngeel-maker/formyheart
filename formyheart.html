@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta para Fernanda 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #fffae6, #e6fffa, #ffe6ff, #e6e6ff, #fff6e6);
+    background-size: 400% 400%;
+    animation: gradientAnim 15s ease infinite;
+    color: #4d1f2f;
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  @keyframes gradientAnim {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+
+  h1 {
+    color: #d6336c;
+    text-shadow: 2px 2px 4px #fff;
+    margin-top: 20px;
+  }
+
+  p { font-size: 18px; }
+
+  /* Sobre */
+  .sobre {
+    width: 350px;
+    max-width: 90%;
+    height: 220px;
+    background: #f9c5d1;
+    margin: 50px auto;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .tapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 175px solid transparent;
+    border-right: 175px solid transparent;
+    border-bottom: 110px solid #d6336c;
+    transition: transform 1s;
+    transform-origin: top;
+    z-index: 2;
+  }
+  .sobre.abierto .tapa { transform: rotateX(180deg); }
+
+  /* Carta estilo pergamino */
+  .carta {
+    background: #fff4e1;
+    padding: 30px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    transition: top 1s;
+    box-sizing: border-box;
+    z-index: 1;
+    border: 2px solid #d3a15d;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .sobre.abierto .carta { top: 0; }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #d6336c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  button:hover { background: #b02552; }
+
+  input[type="month"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #d6336c;
+    font-size: 16px;
+    width: 160px;
+    text-align: center;
+  }
+
+  /* Decoraciones coloridas */
+  .decoracion {
+    position: fixed;
+    font-size: 35px;
+    animation: flotar 6s linear infinite;
+    z-index: 0;
+    opacity: 0.9;
+  }
+  @keyframes flotar {
+    0% { transform: translateY(0) rotate(0deg);}
+    50% { transform: translateY(-40px) rotate(15deg);}
+    100% { transform: translateY(0) rotate(0deg);}
+  }
+</style>
+</head>
+<body>
+
+<h1>Para Fernanda 💖</h1>
+<p>Haz clic en el sobre para abrir tu carta 💌</p>
+
+<!-- Decoraciones flotantes (corazones, ramos y flores de colores) -->
+<script>
+const decoraciones = ["❤️","💛","💚","💜","💖","🌹","💐","🌸","🌺"];
+for(let i=0;i<25;i++){
+  const d = document.createElement("div");
+  d.classList.add("decoracion");
+  d.innerHTML = decoraciones[Math.floor(Math.random()*decoraciones.length)];
+  d.style.left = Math.random()*95 + "vw";
+  d.style.top = Math.random()*90 + "vh";
+  d.style.fontSize = (25 + Math.random()*40) + "px";
+  d.style.animationDuration = (4 + Math.random()*5) + "s";
+  document.body.appendChild(d);
+}
+</script>
+
+<!-- Sobre con carta -->
+<div class="sobre" onclick="abrirSobre(this)">
+  <div class="tapa"></div>
+  <div class="carta">
+    <h2>Mi querida Fernanda 💌</h2>
+    <p>Para abrir tu carta, ingresa mi cumpleaños 🎂 (solo día y mes)</p>
+    
+    <input type="month" id="fecha" />
+    <br>
+    <button onclick="verificarFecha()">Abrir carta</button>
+    
+    <!-- Carta -->
+    <div id="textoCarta" style="display:none; text-align:left; margin-top:20px;">
+      <p>
+        Desde que llegaste a mi vida, cada día ha sido un arcoíris de emociones y momentos inolvidables. Tu risa ilumina mis días más grises, y tu abrazo es mi refugio seguro.<br><br>
+        Cada conversación contigo, cada gesto de cariño y cada instante compartido, me recuerda lo afortunado que soy de tenerte a mi lado. Mi amor por ti es inmenso, profundo y constante.<br><br>
+        A través de esta carta quiero que sientas lo especial que eres. Eres mi alegría, mi inspiración y la razón por la que sonrío cada día. No hay palabras suficientes para describir lo que significas para mí.<br><br>
+        Gracias por cada sonrisa, cada mirada y cada momento que hemos compartido. Cada recuerdo contigo es un tesoro que guardo con todo mi corazón.<br><br>
+        Prometo cuidarte, apoyarte y amarte siempre. Que esta carta sea un pequeño reflejo de la grandeza de mi amor por ti, eterno e infinito.<br><br>
+        Te amo con todo mi corazón, Fernanda, hoy, mañana y siempre. 💖💖💖💖<br><br>
+        Siempre tuyo,<br>
+        <b>Cardielo</b>
+      </p>
+      <button onclick="salirPagina()">Salir 💌</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function abrirSobre(el){ el.classList.toggle("abierto"); }
+
+function verificarFecha() {
+  const fechaInput = document.getElementById("fecha").value;
+  if (!fechaInput) {
+    alert("Por favor selecciona una fecha 🎂");
+    return;
+  }
+  const [year, month] = fechaInput.split("-");
+  const day = 15; // Día fijo
+  if (month === "02") { // Febrero
+    document.getElementById("textoCarta").style.display = "block";
+  } else {
+    alert("Fecha incorrecta, intenta de nuevo 😉");
+  }
+}
+
+function salirPagina(){ 
+  document.body.innerHTML = "<h2>💌 Carta cerrada 💌</h2>";
+} 
+</script>
+
+</body>
+</html>
