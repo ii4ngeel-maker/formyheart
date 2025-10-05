@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Carta Especial para Fernanda</title>
+<title>Te amo Fersita :3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Libre+Baskerville&display=swap" rel="stylesheet">
 <style>
@@ -65,7 +65,7 @@ button {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-button:hover { background: #7cb342; }
+button:hover { background-color: #7cb342; }
 .modal {
   position: fixed;
   top: 0; left: 0;
@@ -222,6 +222,11 @@ btnEnviar.addEventListener('click', enviarRespuestaInput);
 
 function mostrarPregunta(){
   if(bloqueado) return;
+  // Desactivar botón al iniciar cuestionario
+  btnAbrir.disabled = true;
+  btnAbrir.style.cursor = "not-allowed";
+  btnAbrir.style.opacity = 0.6;
+
   modal.style.display='flex';
   cargarPregunta();
 }
