@@ -2,65 +2,62 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Nosotras — Proyecto Romántico</title>
+  <title>Para Nosotras — Carta Especial</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Playfair Display', serif;
-      background: #fce4ec;
-      color: #333;
+      background: #1a1a1a;
+      color: #ddd;
       overflow-x: hidden;
-    }
-    header, section {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
     }
     header {
       text-align: center;
-      position: relative;
+      padding: 40px 20px;
     }
     header h1 {
       font-size: 2.5em;
-      color: #c2185b;
+      color: #9ccc65; /* verde elegante */
       margin-bottom: 10px;
     }
     header p {
       font-size: 1.2em;
-      color: #555;
+      color: #aaa;
     }
-    /* Carta sección */
+
+    /* Carta */
     .sobre {
-      background: #fff;
-      border: 2px solid #c2185b;
+      background: #222;
+      border: 2px solid #9ccc65;
       border-radius: 20px;
       padding: 30px 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       transform: scaleY(0);
       transform-origin: top;
       transition: transform 0.8s ease;
-      margin-top: 20px;
+      margin: 20px auto;
+      max-width: 800px;
     }
     .sobre.abierto {
       transform: scaleY(1);
     }
     .carta h2 {
-      color: #ad1457;
+      color: #c48b9f; /* rosa suave */
       margin-bottom: 15px;
     }
     .carta p {
       font-family: 'Libre Baskerville', serif;
       font-size: 16px;
-      line-height: 1.7;
-      color: #333;
+      line-height: 1.8;
+      color: #eee;
     }
     button {
       margin-top: 20px;
       padding: 12px 25px;
-      background: #d81b60;
-      color: white;
+      background: #9ccc65;
+      color: #111;
       border: none;
       border-radius: 6px;
       font-size: 16px;
@@ -68,30 +65,32 @@
       transition: background 0.3s ease;
     }
     button:hover {
-      background: #ad1457;
+      background: #7cb342;
     }
-    /* Modal pregunta */
+
+    /* Modal preguntas */
     .modal {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.6);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 10;
     }
     .modal-content {
-      background: #fff;
+      background: #2c2c2c;
       padding: 25px;
       border-radius: 12px;
       max-width: 90%;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       text-align: center;
+      border: 1px solid #9ccc65;
     }
     .modal-content h3 {
       margin-bottom: 15px;
-      color: #d81b60;
+      color: #9ccc65;
     }
     .options {
       display: flex;
@@ -100,173 +99,63 @@
       margin-top: 15px;
     }
     .options button {
-      background-color: #f8bbd0;
-      color: #333;
-      border: 1px solid #e91e63;
+      background-color: #444;
+      color: #ddd;
+      border: 1px solid #9ccc65;
       padding: 10px;
       border-radius: 6px;
       font-size: 14px;
     }
     .options button:hover {
-      background-color: #f48fb1;
-    }
-    /* Sección recuerdos */
-    .recuerdos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .recuerdos img {
-      width: 100%;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    /* Juego memory */
-    .memory-board {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .memory-card {
-      width: 100%;
-      padding-top: 100%; /* cuadrado */
-      position: relative;
-      perspective: 600px;
-      cursor: pointer;
-    }
-    .memory-card .front, .memory-card .back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-    }
-    .memory-card .front {
-      background: #e91e63;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5em;
-      transform: rotateY(180deg);
-    }
-    .memory-card .back {
-      background: #fff;
-      border: 2px solid #c2185b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2em;
-    }
-    .memory-card.flipped .back {
-      transform: rotateY(180deg);
-    }
-    .memory-card.flipped .front {
-      transform: rotateY(0deg);
-    }
-    .memory-card .front, .memory-card .back {
-      transition: transform 0.5s ease;
-    }
-    /* Línea de tiempo */
-    .timeline {
-      position: relative;
-      margin-top: 40px;
-      padding-left: 20px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 15px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: #c2185b;
-    }
-    .event {
-      margin-bottom: 30px;
-      position: relative;
-    }
-    .event .date {
-      font-weight: bold;
-      color: #ad1457;
-    }
-    .event .desc {
-      margin-left: 30px;
-      color: #555;
-    }
-    .event::before {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 0;
-      width: 16px;
-      height: 16px;
-      background: #fff;
-      border: 3px solid #c2185b;
-      border-radius: 50%;
-    }
-    /* Promesas */
-    .promesas {
-      margin-top: 30px;
-      text-align: left;
-    }
-    .promesas p {
-      margin-bottom: 15px;
-      line-height: 1.6;
-    }
-    /* Música */
-    .music-control {
-      margin-top: 20px;
+      background-color: #555;
     }
 
-    /* Decoraciones visuales */
-    .petalo {
+    /* Decoraciones */
+    .brillo {
       position: fixed;
-      width: 15px;
-      height: 15px;
-      background: rgba(255,182,193,0.8);
+      width: 6px;
+      height: 6px;
+      background: rgba(156,204,101,0.8);
       border-radius: 50%;
+      pointer-events: none;
+      animation: parpadeo 3s ease-in-out infinite;
+    }
+    .hoja {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(45deg, #4caf50, #9ccc65);
+      border-radius: 50% 50% 0 50%;
+      transform: rotate(45deg);
       pointer-events: none;
       animation: caer 8s linear infinite;
     }
-    .petalo:nth-child(odd) {
-      width: 20px;
-      height: 20px;
-      background: rgba(255,192,203,0.9);
+    .hoja:nth-child(odd) {
+      width: 25px;
+      height: 25px;
+      background: linear-gradient(45deg, #8bc34a, #aed581);
       animation-duration: 10s;
     }
     @keyframes caer {
       0% {
-        transform: translateY(-10%) translateX(0) scale(1);
+        transform: translateY(-10%) rotate(0deg);
         opacity: 0;
       }
       10% { opacity: 1; }
       100% {
-        transform: translateY(110vh) translateX(50vw) rotate(360deg) scale(0.5);
+        transform: translateY(110vh) rotate(360deg);
         opacity: 0;
       }
     }
-    .luz {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: parpadear 3s ease-in-out infinite;
-    }
-    @keyframes parpadear {
+    @keyframes parpadeo {
       0%,100% { opacity: 0.8; }
       50% { opacity: 0.2; }
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2em; }
-      .carta p { font-size: 15px; }
-      button { font-size: 15px; padding: 10px 20px; }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #888;
     }
   </style>
 </head>
@@ -277,16 +166,17 @@
     <p>Un espacio hecho con cariño donde cada detalle es para ti</p>
   </header>
 
-  <section id="seccion-carta">
-    <header>
-      <h2>Carta especial</h2>
+  <section>
+    <div style="text-align:center;">
       <button onclick="mostrarPregunta()">Abrir carta</button>
-    </header>
+    </div>
+
     <div class="sobre" id="sobre">
       <div class="carta">
         <h2>Mi querida Fernanda</h2>
         <p>
-          Desde nuestro primer beso, el 3 de octubre, supe que algo hermoso había comenzado. Tu forma de mirar, de hablar, de ser, se volvió parte de mi mundo.
+          Desde nuestro primer beso, el <b>3 de octubre</b>, supe que algo hermoso había comenzado.
+          Tu forma de mirar, de hablar, de ser, se volvió parte de mi mundo.
           <br><br>
           Esta carta es una pequeña muestra de todo lo que siento por ti. Estás en mis pensamientos constantemente, y cada momento contigo se convierte en un recuerdo invaluable.
           <br><br>
@@ -299,211 +189,105 @@
         </p>
       </div>
     </div>
-
-    <div class="modal" id="modalPregunta" style="display: none;">
-      <div class="modal-content">
-        <h3>¿Cuándo fue nuestro primer beso?</h3>
-        <div class="options">
-          <button onclick="verificarRespuesta(this)">14 de febrero</button>
-          <button onclick="verificarRespuesta(this)">28 de septiembre</button>
-          <button onclick="verificarRespuesta(this)">3 de octubre</button>
-          <button onclick="verificarRespuesta(this)">24 de diciembre</button>
-        </div>
-      </div>
-    </div>
   </section>
 
-  <section id="seccion-recuerdos">
-    <h2>Recuerdos juntos</h2>
-    <div class="recuerdos">
-      <img src="ruta/a/tu_foto1.jpg" alt="Recuerdo 1">
-      <img src="ruta/a/tu_foto2.jpg" alt="Recuerdo 2">
-      <img src="ruta/a/tu_foto3.jpg" alt="Recuerdo 3">
-      <img src="ruta/a/tu_foto4.jpg" alt="Recuerdo 4">
+  <div class="modal" id="modalPregunta" style="display: none;">
+    <div class="modal-content">
+      <h3 id="pregunta"></h3>
+      <div class="options" id="opciones"></div>
     </div>
-  </section>
+  </div>
 
-  <section id="seccion-juego">
-    <h2>Juego romántico: Memoria</h2>
-    <div class="memory-board" id="memoryBoard">
-      <!-- tarjetas generadas por JS -->
-    </div>
-  </section>
-
-  <section id="seccion-linea">
-    <h2>Nuestro camino juntos</h2>
-    <div class="timeline">
-      <div class="event">
-        <div class="date">3 de octubre de 2024</div>
-        <div class="desc">Nuestro primer beso</div>
-      </div>
-      <div class="event">
-        <div class="date">14 de febrero de 2025</div>
-        <div class="desc">San Valentín juntos</div>
-      </div>
-      <div class="event">
-        <div class="date">15 de mayo de 2025</div>
-        <div class="desc">Nuestro primer viaje</div>
-      </div>
-      <!-- más eventos -->
-    </div>
-  </section>
-
-  <section id="seccion-promesas">
-    <h2>Promesas para ti</h2>
-    <div class="promesas">
-      <p>Prometo escucharte siempre, incluso en los silencios.</p>
-      <p>Prometo apoyarte, valorarte y cuidarte cada día.</p>
-      <p>Prometo amarte con toda mi alma, sin condiciones.</p>
-      <p>Prometo crear recuerdos contigo, juntos, siempre.</p>
-    </div>
-  </section>
-
-  <section id="seccion-musica">
-    <h2>Música para nosotros</h2>
-    <div class="music-control">
-      <audio id="musica" src="ruta/a/tu_cancion.mp3" loop></audio>
-      <button onclick="toggleMusica()">Play / Pausa música</button>
-    </div>
-  </section>
-
-  <footer style="padding: 20px; text-align: center; color: #777;">
+  <footer>
     <p>Creado con amor para ti ❤️</p>
   </footer>
 
   <script>
+    const preguntas = [
+      {
+        texto: "¿Cuándo fue nuestro primer beso?",
+        opciones: ["14 de febrero", "28 de septiembre", "3 de octubre", "24 de diciembre"],
+        correcta: "3 de octubre"
+      },
+      {
+        texto: "¿Qué color te recuerda a mí?",
+        opciones: ["Rojo", "Verde", "Negro", "Rosa"],
+        correcta: "Negro"
+      },
+      {
+        texto: "¿Qué palabra describe mejor nuestra historia?",
+        opciones: ["Casual", "Destino", "Coincidencia", "Locura"],
+        correcta: "Destino"
+      },
+      {
+        texto: "¿Qué siempre intento darte?",
+        opciones: ["Problemas", "Risas", "Dudas", "Silencio"],
+        correcta: "Risas"
+      },
+      {
+        texto: "¿Qué significa para mí tu sonrisa?",
+        opciones: ["Nada", "Luz", "Misterio", "Rutina"],
+        correcta: "Luz"
+      }
+    ];
+
+    let indice = 0;
+
     function mostrarPregunta() {
       document.getElementById('modalPregunta').style.display = 'flex';
+      cargarPregunta();
     }
-    function verificarRespuesta(btn) {
-      if (btn.innerText === '3 de octubre') {
-        document.getElementById('modalPregunta').style.display = 'none';
-        document.getElementById('sobre').classList.add('abierto');
-        iniciarDecoraciones();
+
+    function cargarPregunta() {
+      const p = preguntas[indice];
+      document.getElementById('pregunta').innerText = p.texto;
+      const cont = document.getElementById('opciones');
+      cont.innerHTML = "";
+      p.opciones.forEach(op => {
+        const btn = document.createElement('button');
+        btn.innerText = op;
+        btn.onclick = () => verificarRespuesta(op);
+        cont.appendChild(btn);
+      });
+    }
+
+    function verificarRespuesta(resp) {
+      if (resp === preguntas[indice].correcta) {
+        indice++;
+        if (indice < preguntas.length) {
+          cargarPregunta();
+        } else {
+          document.getElementById('modalPregunta').style.display = 'none';
+          document.getElementById('sobre').classList.add('abierto');
+          iniciarDecoraciones();
+        }
       } else {
-        alert('Esa no es la fecha correcta. Intenta de nuevo.');
+        alert('No es la respuesta correcta, intenta otra vez ❤️');
       }
     }
 
     function iniciarDecoraciones() {
-      // Pétalos
-      for (let i = 0; i < 40; i++) {
-        const petalo = document.createElement('div');
-        petalo.classList.add('petalo');
-        petalo.style.left = Math.random() * 100 + "vw";
-        petalo.style.animationDelay = (Math.random() * 5) + "s";
-        document.body.appendChild(petalo);
-        // opcional: quitar después
-        setTimeout(() => petalo.remove(), 20000);
+      // hojas verdes
+      for (let i = 0; i < 30; i++) {
+        const hoja = document.createElement('div');
+        hoja.classList.add('hoja');
+        hoja.style.left = Math.random() * 100 + "vw";
+        hoja.style.animationDelay = (Math.random() * 5) + "s";
+        document.body.appendChild(hoja);
+        setTimeout(() => hoja.remove(), 20000);
       }
-      // Luces suaves
-      for (let i = 0; i < 60; i++) {
-        const luz = document.createElement('div');
-        luz.classList.add('luz');
-        luz.style.left = Math.random() * 100 + "vw";
-        luz.style.top = Math.random() * 100 + "vh";
-        luz.style.animationDelay = (Math.random() * 5) + "s";
-        luz.style.animationDuration = (3 + Math.random() * 4) + "s";
-        document.body.appendChild(luz);
-        setTimeout(() => luz.remove(), 20000);
-      }
-    }
-
-    // Juego de memoria
-    const phrases = [
-      "Te amo",
-      "Siempre tuyo",
-      "Eres mi luz",
-      "Mi compañera",
-      "Te amo",
-      "Siempre tuyo",
-      "Eres mi luz",
-      "Mi compañera"
-    ];
-
-    let hasFlippedCard = false;
-    let firstCard, secondCard;
-    let lockBoard = false;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+      // brillos suaves
+      for (let i = 0; i < 50; i++) {
+        const brillo = document.createElement('div');
+        brillo.classList.add('brillo');
+        brillo.style.left = Math.random() * 100 + "vw";
+        brillo.style.top = Math.random() * 100 + "vh";
+        brillo.style.animationDelay = (Math.random() * 5) + "s";
+        brillo.style.animationDuration = (3 + Math.random() * 4) + "s";
+        document.body.appendChild(brillo);
+        setTimeout(() => brillo.remove(), 15000);
       }
     }
-
-    function setupMemory() {
-      const board = document.getElementById('memoryBoard');
-      shuffle(phrases);
-      phrases.forEach((text) => {
-        const card = document.createElement('div');
-        card.classList.add('memory-card');
-        card.innerHTML = `
-          <div class="back">${text}</div>
-          <div class="front">?</div>
-        `;
-        card.addEventListener('click', flipCard);
-        board.appendChild(card);
-      });
-    }
-
-    function flipCard() {
-      if (lockBoard) return;
-      if (this === firstCard) return;
-
-      this.classList.add('flipped');
-
-      if (!hasFlippedCard) {
-        hasFlippedCard = true;
-        firstCard = this;
-        return;
-      }
-
-      secondCard = this;
-      lockBoard = true;
-
-      if (firstCard.querySelector('.back').innerText === secondCard.querySelector('.back').innerText) {
-        // coincidencia
-        disableCards();
-      } else {
-        unflipCards();
-      }
-    }
-
-    function disableCards() {
-      firstCard.removeEventListener('click', flipCard);
-      secondCard.removeEventListener('click', flipCard);
-      resetBoard();
-    }
-
-    function unflipCards() {
-      setTimeout(() => {
-        firstCard.classList.remove('flipped');
-        secondCard.classList.remove('flipped');
-        resetBoard();
-      }, 1000);
-    }
-
-    function resetBoard() {
-      [hasFlippedCard, lockBoard] = [false, false];
-      firstCard = null;
-      secondCard = null;
-    }
-
-    // Música control
-    function toggleMusica() {
-      const mus = document.getElementById('musica');
-      if (mus.paused) {
-        mus.play();
-      } else {
-        mus.pause();
-      }
-    }
-
-    // Iniciar memory al cargar
-    window.onload = () => {
-      setupMemory();
-    };
   </script>
 
 </body>
