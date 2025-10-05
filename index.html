@@ -2,16 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Nosotras — Carta Especial</title>
+  <title>Carta Especial para Fernanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Playfair Display', serif;
-      background: #1a1a1a;
+      background: #111;
       color: #ddd;
       overflow-x: hidden;
+      position: relative;
     }
     header {
       text-align: center;
@@ -19,7 +20,7 @@
     }
     header h1 {
       font-size: 2.5em;
-      color: #9ccc65; /* verde elegante */
+      color: #9ccc65; 
       margin-bottom: 10px;
     }
     header p {
@@ -39,12 +40,14 @@
       transition: transform 0.8s ease;
       margin: 20px auto;
       max-width: 800px;
+      position: relative;
+      z-index: 5;
     }
     .sobre.abierto {
       transform: scaleY(1);
     }
     .carta h2 {
-      color: #c48b9f; /* rosa suave */
+      color: #c48b9f;
       margin-bottom: 15px;
     }
     .carta p {
@@ -110,6 +113,17 @@
       background-color: #555;
     }
 
+    /* Input final */
+    #respuestaInput {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #9ccc65;
+      width: 80%;
+      background: #333;
+      color: #eee;
+    }
+
     /* Decoraciones */
     .brillo {
       position: fixed;
@@ -119,6 +133,7 @@
       border-radius: 50%;
       pointer-events: none;
       animation: parpadeo 3s ease-in-out infinite;
+      z-index: 1;
     }
     .hoja {
       position: fixed;
@@ -129,6 +144,7 @@
       transform: rotate(45deg);
       pointer-events: none;
       animation: caer 8s linear infinite;
+      z-index: 1;
     }
     .hoja:nth-child(odd) {
       width: 25px;
@@ -136,20 +152,31 @@
       background: linear-gradient(45deg, #8bc34a, #aed581);
       animation-duration: 10s;
     }
+
+    /* Estrellitas */
+    .estrella {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: moverEstrella 8s linear infinite;
+      z-index: 0;
+    }
+
     @keyframes caer {
-      0% {
-        transform: translateY(-10%) rotate(0deg);
-        opacity: 0;
-      }
-      10% { opacity: 1; }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-10%) rotate(0deg); opacity:0; }
+      10% { opacity:1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
     }
     @keyframes parpadeo {
       0%,100% { opacity: 0.8; }
       50% { opacity: 0.2; }
+    }
+    @keyframes moverEstrella {
+      0% { transform: translate(0,0); opacity:1; }
+      100% { transform: translate(50vw, 100vh); opacity:0; }
     }
 
     footer {
@@ -193,8 +220,10 @@
 
   <div class="modal" id="modalPregunta" style="display: none;">
     <div class="modal-content">
-      <h3 id="pregunta"></h3>
+      <h3 id="pregunta">Te haré preguntas para saber si eres digna de abrir esta carta.</h3>
       <div class="options" id="opciones"></div>
+      <input type="text" id="respuestaInput" placeholder="Escribe tu respuesta aquí" style="display:none;">
+      <button id="btnEnviar" style="display:none;" onclick="enviarRespuestaInput()">Enviar</button>
     </div>
   </div>
 
@@ -204,31 +233,11 @@
 
   <script>
     const preguntas = [
-      {
-        texto: "¿Cuándo fue nuestro primer beso?",
-        opciones: ["14 de febrero", "28 de septiembre", "3 de octubre", "24 de diciembre"],
-        correcta: "3 de octubre"
-      },
-      {
-        texto: "¿Qué color te recuerda a mí?",
-        opciones: ["Rojo", "Verde", "Negro", "Rosa"],
-        correcta: "Negro"
-      },
-      {
-        texto: "¿Qué palabra describe mejor nuestra historia?",
-        opciones: ["Casual", "Destino", "Coincidencia", "Locura"],
-        correcta: "Destino"
-      },
-      {
-        texto: "¿Qué siempre intento darte?",
-        opciones: ["Problemas", "Risas", "Dudas", "Silencio"],
-        correcta: "Risas"
-      },
-      {
-        texto: "¿Qué significa para mí tu sonrisa?",
-        opciones: ["Nada", "Luz", "Misterio", "Rutina"],
-        correcta: "Luz"
-      }
+      {texto: "¿Cuál es mi color favorito?", opciones: ["Rojo", "Verde", "Azul", "Rosa"], correcta: "Azul"},
+      {texto: "¿Cuánto te amo?", opciones: ["Muchísimo", "Demasiado", "≥ que Josefina pero ≤ que Vero", "(-∞,+∞)"], correcta: "(-∞,+∞)"},
+      {texto: "¿Qué me pone de nervios?", opciones: ["Mirarte a los ojos", "Besos en el cachete", "Que sonrías bonito", "Cuando te acercas mucho"], correcta: "Besos en el cachete"},
+      {texto: "¿Cuál es mi comida favorita?", opciones: ["Burritos", "Sopa fría", "Frijoles", "Pozole verde", "Milanesa con espagueti"], correcta: "Milanesa con espagueti"},
+      {texto: "¿Me amas?", opciones: ["Sí","No"], correcta: "Sí", finalInput: true}
     ];
 
     let indice = 0;
@@ -242,50 +251,91 @@
       const p = preguntas[indice];
       document.getElementById('pregunta').innerText = p.texto;
       const cont = document.getElementById('opciones');
+      const input = document.getElementById('respuestaInput');
+      const btn = document.getElementById('btnEnviar');
+
+      input.style.display = 'none';
+      btn.style.display = 'none';
+      cont.style.display = p.finalInput ? 'none' : 'flex';
       cont.innerHTML = "";
-      p.opciones.forEach(op => {
-        const btn = document.createElement('button');
-        btn.innerText = op;
-        btn.onclick = () => verificarRespuesta(op);
-        cont.appendChild(btn);
-      });
+
+      if(p.finalInput){
+        input.value = "";
+        input.style.display = 'block';
+        btn.style.display = 'block';
+      } else {
+        p.opciones.forEach(op => {
+          const btnOp = document.createElement('button');
+          btnOp.innerText = op;
+          btnOp.onclick = () => verificarRespuesta(op);
+          cont.appendChild(btnOp);
+        });
+      }
     }
 
-    function verificarRespuesta(resp) {
-      if (resp === preguntas[indice].correcta) {
+    function verificarRespuesta(resp){
+      const p = preguntas[indice];
+      if(resp === p.correcta){
         indice++;
-        if (indice < preguntas.length) {
+        if(indice < preguntas.length){
           cargarPregunta();
         } else {
-          document.getElementById('modalPregunta').style.display = 'none';
-          document.getElementById('sobre').classList.add('abierto');
-          iniciarDecoraciones();
+          // si la ultima es input, no se abre aquí
+          if(!p.finalInput){
+            abrirCarta();
+          }
         }
       } else {
         alert('No es la respuesta correcta, intenta otra vez ❤️');
       }
     }
 
-    function iniciarDecoraciones() {
+    function enviarRespuestaInput(){
+      const input = document.getElementById('respuestaInput');
+      if(input.value.trim() !== ""){
+        abrirCarta();
+        document.getElementById('modalPregunta').style.display = 'none';
+      } else {
+        alert("Escribe algo antes de continuar ❤️");
+      }
+    }
+
+    function abrirCarta(){
+      document.getElementById('sobre').classList.add('abierto');
+      iniciarDecoraciones();
+    }
+
+    function iniciarDecoraciones(){
       // hojas verdes
-      for (let i = 0; i < 30; i++) {
+      for(let i=0;i<30;i++){
         const hoja = document.createElement('div');
         hoja.classList.add('hoja');
-        hoja.style.left = Math.random() * 100 + "vw";
-        hoja.style.animationDelay = (Math.random() * 5) + "s";
+        hoja.style.left = Math.random()*100+"vw";
+        hoja.style.animationDelay = (Math.random()*5)+"s";
         document.body.appendChild(hoja);
-        setTimeout(() => hoja.remove(), 20000);
+        setTimeout(()=>hoja.remove(),20000);
       }
-      // brillos suaves
-      for (let i = 0; i < 50; i++) {
+      // brillos
+      for(let i=0;i<50;i++){
         const brillo = document.createElement('div');
         brillo.classList.add('brillo');
-        brillo.style.left = Math.random() * 100 + "vw";
-        brillo.style.top = Math.random() * 100 + "vh";
-        brillo.style.animationDelay = (Math.random() * 5) + "s";
-        brillo.style.animationDuration = (3 + Math.random() * 4) + "s";
+        brillo.style.left = Math.random()*100+"vw";
+        brillo.style.top = Math.random()*100+"vh";
+        brillo.style.animationDelay = (Math.random()*5)+"s";
+        brillo.style.animationDuration = (3 + Math.random()*4)+"s";
         document.body.appendChild(brillo);
-        setTimeout(() => brillo.remove(), 15000);
+        setTimeout(()=>brillo.remove(),15000);
+      }
+      // estrellitas blancas
+      for(let i=0;i<60;i++){
+        const estrella = document.createElement('div');
+        estrella.classList.add('estrella');
+        estrella.style.left = Math.random()*100+"vw";
+        estrella.style.top = Math.random()*100+"vh";
+        estrella.style.animationDelay = (Math.random()*5)+"s";
+        estrella.style.animationDuration = (5 + Math.random()*5)+"s";
+        document.body.appendChild(estrella);
+        setTimeout(()=>estrella.remove(),20000);
       }
     }
   </script>
