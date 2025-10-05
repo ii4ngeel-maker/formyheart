@@ -6,38 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Playfair Display', serif;
-      background: linear-gradient(to bottom, #fff1f5, #fce4ec);
+      background: #fce4ec; /* rosa muy suave */
       color: #333;
       text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
       padding: 20px;
-      margin: 0;
     }
-
     h1 {
-      color: #e91e63;
-      margin-bottom: 10px;
+      color: #c2185b;
       font-size: 2em;
+      margin-top: 20px;
     }
-
     p {
       color: #555;
+      margin-bottom: 20px;
     }
-
     .sobre-container {
       max-width: 600px;
       margin: 40px auto;
-      padding: 20px;
+      padding: 0 20px;
+      position: relative;
     }
-
     .sobre {
-      background: #fff;
-      border: 2px solid #e91e63;
+      background: #ffffff;
+      border: 2px solid #c2185b;
       border-radius: 20px;
       padding: 40px 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -45,28 +41,26 @@
       transform-origin: top;
       transition: transform 0.8s ease;
       text-align: left;
+      position: relative;
+      z-index: 2;
     }
-
     .sobre.abierto {
       transform: scaleY(1);
     }
-
     .carta h2 {
-      color: #d81b60;
+      color: #ad1457;
       margin-bottom: 15px;
     }
-
     .carta p {
       font-family: 'Libre Baskerville', serif;
       font-size: 16px;
       line-height: 1.7;
       color: #333;
     }
-
     button {
       margin-top: 20px;
       padding: 12px 25px;
-      background: #e91e63;
+      background: #d81b60;
       color: white;
       border: none;
       border-radius: 6px;
@@ -74,11 +68,9 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-
     button:hover {
-      background: #c2185b;
+      background: #ad1457;
     }
-
     /* Modal pregunta */
     .modal {
       position: fixed;
@@ -90,7 +82,6 @@
       justify-content: center;
       z-index: 10;
     }
-
     .modal-content {
       background: #fff;
       padding: 25px;
@@ -99,19 +90,16 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       text-align: center;
     }
-
     .modal-content h3 {
       margin-bottom: 15px;
       color: #d81b60;
     }
-
     .options {
       display: flex;
       flex-direction: column;
       gap: 10px;
       margin-top: 15px;
     }
-
     .options button {
       background-color: #f8bbd0;
       color: #333;
@@ -120,31 +108,70 @@
       border-radius: 6px;
       font-size: 14px;
     }
-
     .options button:hover {
       background-color: #f48fb1;
     }
-
+    /* Decoraciones: pétalos cayendo, luces suaves */
+    .petalo {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: rgba(255,182,193,0.8); /* rosa claro */
+      border-radius: 50%;
+      pointer-events: none;
+      animation: caer 8s linear infinite;
+    }
+    .petalo:nth-child(odd) {
+      width: 20px;
+      height: 20px;
+      background: rgba(255,192,203,0.9);
+      animation-duration: 10s;
+    }
+    @keyframes caer {
+      0% {
+        transform: translateY(-10%) translateX(0) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(50vw) rotate(360deg) scale(0.5);
+        opacity: 0;
+      }
+    }
+    /* Luces parpadeantes suaves */
+    .luz {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: parpadear 3s ease-in-out infinite;
+    }
+    @keyframes parpadear {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.2; }
+    }
     @media (max-width: 600px) {
       .sobre {
         padding: 30px 15px;
       }
-
       .carta p {
         font-size: 15px;
       }
-
       button {
         font-size: 15px;
+        padding: 10px 20px;
       }
     }
-
   </style>
 </head>
 <body>
 
   <h1>Una carta para Fernanda</h1>
-  <p>Toca el botón para abrir 💌</p>
+  <p>Toca el botón para abrir la carta</p>
 
   <div class="sobre-container">
     <button onclick="mostrarPregunta()">Abrir carta</button>
@@ -185,13 +212,37 @@
     function mostrarPregunta() {
       document.getElementById('modalPregunta').style.display = 'flex';
     }
-
     function verificarRespuesta(btn) {
       if (btn.innerText === '3 de octubre') {
         document.getElementById('modalPregunta').style.display = 'none';
         document.getElementById('sobre').classList.add('abierto');
+        iniciarDecoraciones();
       } else {
-        alert('Mmm... Esa no es la fecha correcta. Intenta de nuevo 🧐');
+        alert('Esa no es la fecha correcta. Intenta de nuevo.');
+      }
+    }
+
+    function iniciarDecoraciones() {
+      // Pétalos
+      for (let i = 0; i < 30; i++) {
+        const petalo = document.createElement('div');
+        petalo.classList.add('petalo');
+        petalo.style.left = Math.random() * 100 + "vw";
+        petalo.style.animationDelay = (Math.random() * 5) + "s";
+        document.body.appendChild(petalo);
+        // quitar después si quieres
+        setTimeout(() => petalo.remove(), 15000);
+      }
+      // Luces suaves
+      for (let i = 0; i < 50; i++) {
+        const luz = document.createElement('div');
+        luz.classList.add('luz');
+        luz.style.left = Math.random() * 100 + "vw";
+        luz.style.top = Math.random() * 100 + "vh";
+        luz.style.animationDelay = (Math.random() * 5) + "s";
+        luz.style.animationDuration = (3 + Math.random() * 4) + "s";
+        document.body.appendChild(luz);
+        setTimeout(() => luz.remove(), 20000);
       }
     }
   </script>
