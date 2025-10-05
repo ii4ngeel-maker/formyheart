@@ -155,6 +155,9 @@ footer {
 </style>
 </head>
 <body>
+<script>
+  document.title = "Te amo mucho Fersita :3";
+</script>
 
 <header>
 <h1>Para Ti, Fernanda</h1>
@@ -169,19 +172,7 @@ footer {
 <div class="sobre" id="sobre">
   <div class="carta">
     <h2>Mi querida Fernanda</h2>
-    <p>
-      Desde nuestro primer beso, el <b>3 de octubre</b>, supe que algo hermoso había comenzado.
-      Tu forma de mirar, de hablar, de ser, se volvió parte de mi mundo.
-      <br><br>
-      Esta carta es una pequeña muestra de todo lo que siento por ti. Estás en mis pensamientos constantemente, y cada momento contigo se convierte en un recuerdo invaluable.
-      <br><br>
-      Gracias por cada sonrisa, por cada palabra, por ser tú.
-      <br><br>
-      Te amo profundamente.
-      <br><br>
-      Siempre tuyo,<br>
-      <b>Cardielo</b>
-    </p>
+    <p id="textoCarta"></p>
   </div>
 </div>
 </section>
@@ -218,16 +209,28 @@ const opcionesDiv = document.getElementById('opciones');
 const input = document.getElementById('respuestaInput');
 const btnEnviar = document.getElementById('btnEnviar');
 
+const textoOriginal = `
+Desde nuestro primer beso, el 3 de octubre, supe que algo hermoso había comenzado.
+Tu forma de mirar, de hablar, de ser, se volvió parte de mi mundo.
+
+Esta carta es una pequeña muestra de todo lo que siento por ti. Estás en mis pensamientos constantemente, y cada momento contigo se convierte en un recuerdo invaluable.
+
+Gracias por cada sonrisa, por cada palabra, por ser tú.
+
+Te amo profundamente.
+
+Siempre tuyo,
+Cardielo
+`;
+
 btnAbrir.addEventListener('click', mostrarPregunta);
 btnEnviar.addEventListener('click', enviarRespuestaInput);
 
 function mostrarPregunta(){
   if(bloqueado) return;
-  // Desactivar botón al iniciar cuestionario
   btnAbrir.disabled = true;
   btnAbrir.style.cursor = "not-allowed";
   btnAbrir.style.opacity = 0.6;
-
   modal.style.display='flex';
   cargarPregunta();
 }
@@ -241,7 +244,6 @@ function cargarPregunta(){
   input.style.display='none';
   btnEnviar.style.display='none';
   opcionesDiv.style.display=p.finalInput?'none':'flex';
-
   if(p.finalInput){
     input.value='';
     input.style.display='block';
@@ -288,7 +290,27 @@ function enviarRespuestaInput(){
 
 function abrirCarta(){
   document.getElementById('sobre').classList.add('abierto');
+  escribirCarta();
   iniciarDecoraciones();
+}
+
+function escribirCarta(){
+  const carta = document.getElementById('textoCarta');
+  carta.innerHTML = '';
+  let i = 0;
+  function escribir() {
+    if (i < textoOriginal.length){
+      const char = textoOriginal[i];
+      if(char === '\n'){
+        carta.innerHTML += '<br>';
+      } else {
+        carta.innerHTML += char;
+      }
+      i++;
+      setTimeout(escribir, 30);
+    }
+  }
+  escribir();
 }
 
 function iniciarDecoraciones(){
