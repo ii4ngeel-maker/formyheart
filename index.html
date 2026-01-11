@@ -13,23 +13,36 @@ body {
   color: #ddd;
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 header {
   text-align: center;
   padding: 40px 20px;
+  margin-top: 60px; /* baja un poco el header */
 }
 header h1 {
   font-size: 2.5em;
-  color: #9ccc65;
+  color: #f48fb1; /* Rosa */
   margin-bottom: 10px;
 }
 header p {
   font-size: 1.2em;
-  color: #aaa;
+  color: #faa2c1; /* Rosa más claro */
+}
+.section-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* ocupa el espacio restante */
+  margin-top: 40px; /* ajusta según quieras más abajo */
 }
 .sobre {
   background: #222;
-  border: 2px solid #9ccc65;
+  border: 2px solid #f48fb1; /* Rosa */
   border-radius: 20px;
   padding: 30px 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -45,7 +58,7 @@ header p {
   transform: scaleY(1);
 }
 .carta h2 {
-  color: #c48b9f;
+  color: #f06292; /* Rosa */
   margin-bottom: 15px;
 }
 .carta p {
@@ -57,7 +70,7 @@ header p {
 button {
   margin-top: 20px;
   padding: 12px 25px;
-  background: #9ccc65;
+  background: #f48fb1; /* Rosa */
   color: #111;
   border: none;
   border-radius: 6px;
@@ -65,7 +78,7 @@ button {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-button:hover { background-color: #7cb342; }
+button:hover { background-color: #f06292; }
 .modal {
   position: fixed;
   top: 0; left: 0;
@@ -83,11 +96,11 @@ button:hover { background-color: #7cb342; }
   max-width: 90%;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   text-align: center;
-  border: 1px solid #9ccc65;
+  border: 1px solid #f48fb1; /* Rosa */
 }
 .modal-content h3 {
   margin-bottom: 15px;
-  color: #9ccc65;
+  color: #f48fb1; /* Rosa */
 }
 .options {
   display: flex;
@@ -98,7 +111,7 @@ button:hover { background-color: #7cb342; }
 .options button {
   background-color: #444;
   color: #ddd;
-  border: 1px solid #9ccc65;
+  border: 1px solid #f48fb1; /* Rosa */
   padding: 10px;
   border-radius: 6px;
   font-size: 14px;
@@ -108,7 +121,7 @@ button:hover { background-color: #7cb342; }
   margin-top: 15px;
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #9ccc65;
+  border: 1px solid #f48fb1; /* Rosa */
   width: 80%;
   background: #333;
   color: #eee;
@@ -116,7 +129,7 @@ button:hover { background-color: #7cb342; }
 footer {
   text-align: center;
   padding: 20px;
-  color: #888;
+  color: #faa2c1; /* Rosa claro */
 }
 .brillo, .hoja, .estrella {
   pointer-events: none;
@@ -124,23 +137,18 @@ footer {
 }
 .brillo {
   width: 6px; height: 6px;
-  background: rgba(156,204,101,0.8);
+  background: rgba(244,143,177,0.8); /* Rosa */
   border-radius: 50%;
   animation: parpadeo 3s ease-in-out infinite;
   z-index: 1;
 }
 .hoja {
   width: 20px; height: 20px;
-  background: linear-gradient(45deg, #4caf50, #9ccc65);
+  background: linear-gradient(45deg, #f06292, #f48fb1); /* Rosa */
   border-radius: 50% 50% 0 50%;
   transform: rotate(45deg);
   animation: caer 8s linear infinite;
   z-index: 1;
-}
-.hoja:nth-child(odd) {
-  width: 25px; height: 25px;
-  background: linear-gradient(45deg, #8bc34a, #aed581);
-  animation-duration: 10s;
 }
 .estrella {
   width: 2px; height: 2px;
@@ -160,14 +168,13 @@ footer {
 </script>
 
 <header>
-<h1>Para ti, mi niña :3</h1>
-<p>"You are the best thing that's ever been mine."</p>
+<h1> ola mi loba auuu </h1>
+<p>"Ya un mesecito yujuuu :D"</p>
 </header>
 
-<section>
-<div style="text-align:center;">
+<section class="section-center">
   <button id="btnAbrir">Abrir carta</button>
-</div>
+</section>
 
 <div class="sobre" id="sobre">
   <div class="carta">
@@ -175,33 +182,23 @@ footer {
     <p id="textoCarta"></p>
   </div>
 </div>
-</section>
 
 <div class="modal" id="modalPregunta" style="display: none;">
 <div class="modal-content">
-  <h3 id="pregunta">Responde correctamente este cuestionario para abrir la carta :3</h3>
+  <h3 id="pregunta">Ingresa contraseña</h3>
   <div class="options" id="opciones"></div>
-  <input type="text" id="respuestaInput" placeholder="Escribe tu respuesta aquí" style="display:none;">
-  <button id="btnEnviar" style="display:none;">Enviar</button>
+  <input type="text" id="respuestaInput" placeholder="Escribe tu contraseña aquí">
+  <button id="btnEnviar">Enviar</button>
 </div>
 </div>
 
 <footer>
-<p>Espero te guste. Con mucho amor, cardiel ♡ </p>
+<p><strong>Contraseña:</strong> t ama tu nobio robloxiano</p>
+<p>Espero te guste. Con mucho amor, cardielo hermoso guapo beyo ♡ </p>
 </footer>
 
 <script>
-const preguntas = [
-  {texto:"¿Cuándo fue nuestro primer beso?", opciones:["14 de febrero","28 de septiembre","03 de octubre","24 de diciembre"], correcta:"03 de octubre"},
-  {texto:"¿Cuál es mi color favorito?", opciones:["Rojo","Verde","Azul","Rosa"], correcta:"Azul"},
-  {texto:"¿Cuánto te amo?", opciones:["Muchísimo","Demasiado","≥ que Josefina pero ≤ que Vero","(-∞,+∞)"], correcta:"(-∞,+∞)"},
-  {texto:"¿Qué me pone de nervios?", opciones:["Mirarte a los ojos","Besos en el cachete","Que sonrías bonito","Cuando te acercas mucho"], correcta:"Besos en el cachete"},
-  {texto:"¿Cuál es mi comida favorita?", opciones:["Burritos","Sopa fría","Frijoles","Pozole verde","Milanesa con espagueti"], correcta:"Milanesa con espagueti"},
-  {texto:"¿Me amas?", opciones:["Sí","No"], correcta:"Sí", finalInput:true}
-];
-
-let indice = 0;
-let bloqueado = false;
+const contraseñaCorrecta = "t ama tu nobio robloxiano";
 
 const modal = document.getElementById('modalPregunta');
 const btnAbrir = document.getElementById('btnAbrir');
@@ -209,84 +206,34 @@ const opcionesDiv = document.getElementById('opciones');
 const input = document.getElementById('respuestaInput');
 const btnEnviar = document.getElementById('btnEnviar');
 
-const textoOriginal = `
-Desde nuestro primer beso, el 3 de octubre, supe que algo hermoso había comenzado.
-Tu forma de mirar, de hablar, de ser, se volvió parte de mi mundo.
-
-Esta carta es una pequeña muestra de todo lo que siento por ti. Estás en mis pensamientos constantemente, y cada momento contigo se convierte en un recuerdo invaluable.
-
-Gracias por cada sonrisa, por cada palabra, por ser tú.
-
-Te amo profundamente.
-
-Siempre tuyo,
-Cardielo
-`;
-
-btnAbrir.addEventListener('click', mostrarPregunta);
-btnEnviar.addEventListener('click', enviarRespuestaInput);
-
-function mostrarPregunta(){
-  if(bloqueado) return;
+btnAbrir.addEventListener('click', () => {
   btnAbrir.disabled = true;
   btnAbrir.style.cursor = "not-allowed";
   btnAbrir.style.opacity = 0.6;
-  modal.style.display='flex';
-  cargarPregunta();
-}
+  modal.style.display = 'flex';
 
-function cargarPregunta(){
-  bloqueado = true;
-  const p = preguntas[indice];
-  if(!p) return;
-  document.getElementById('pregunta').innerText = p.texto;
-  opcionesDiv.innerHTML='';
-  input.style.display='none';
-  btnEnviar.style.display='none';
-  opcionesDiv.style.display=p.finalInput?'none':'flex';
-  if(p.finalInput){
-    input.value='';
-    input.style.display='block';
-    btnEnviar.style.display='block';
-  } else {
-    p.opciones.forEach(op=>{
-      const btn = document.createElement('button');
-      btn.innerText=op;
-      btn.onclick=()=> verificarRespuesta(op);
-      opcionesDiv.appendChild(btn);
-    });
-  }
-  bloqueado=false;
-}
+  document.getElementById('pregunta').innerText = "Ingresa contraseña";
+  opcionesDiv.style.display = 'none';
+  input.style.display = 'block';
+  btnEnviar.style.display = 'block';
+});
 
-function verificarRespuesta(resp){
-  if(bloqueado) return;
-  bloqueado=true;
-  const p = preguntas[indice];
-  if(resp===p.correcta){
-    indice++;
-    if(indice < preguntas.length){
-      cargarPregunta();
-    } else if(!p.finalInput){
-      abrirCarta();
-    }
-  } else {
-    alert('No es la respuesta correcta, intenta otra vez ❤️');
-  }
-  bloqueado=false;
-}
+btnEnviar.addEventListener('click', verificarContraseña);
 
-function enviarRespuestaInput(){
-  if(bloqueado) return;
-  bloqueado=true;
-  if(input.value.trim()!==''){
+function verificarContraseña(){
+  const respuesta = input.value.trim();
+
+  if(respuesta === contraseñaCorrecta){
+    modal.style.display = 'none';
     abrirCarta();
-    modal.style.display='none';
   } else {
-    alert('Escribe algo antes de continuar ❤️');
+    alert("Contraseña incorrecta 💔");
   }
-  bloqueado=false;
 }
+
+const textoOriginal = `
+Todavia no escribo la carta ajsakdshak quebot xd 
+`;
 
 function abrirCarta(){
   document.getElementById('sobre').classList.add('abierto');
@@ -343,3 +290,4 @@ function iniciarDecoraciones(){
 </script>
 </body>
 </html>
+
