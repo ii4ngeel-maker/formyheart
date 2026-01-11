@@ -21,28 +21,28 @@ body {
 header {
   text-align: center;
   padding: 40px 20px;
-  margin-top: 60px; /* baja un poco el header */
+  margin-top: 60px;
 }
 header h1 {
   font-size: 2.5em;
-  color: #f48fb1; /* Rosa */
+  color: #f48fb1; 
   margin-bottom: 10px;
 }
 header p {
   font-size: 1.2em;
-  color: #faa2c1; /* Rosa más claro */
+  color: #faa2c1; 
 }
 .section-center {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1; /* ocupa el espacio restante */
-  margin-top: 40px; /* ajusta según quieras más abajo */
+  flex: 1; 
+  margin-top: 40px; 
 }
 .sobre {
   background: #222;
-  border: 2px solid #f48fb1; /* Rosa */
+  border: 2px solid #f48fb1;
   border-radius: 20px;
   padding: 30px 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -58,7 +58,7 @@ header p {
   transform: scaleY(1);
 }
 .carta h2 {
-  color: #f06292; /* Rosa */
+  color: #f06292; 
   margin-bottom: 15px;
 }
 .carta p {
@@ -67,10 +67,18 @@ header p {
   line-height: 1.8;
   color: #eee;
 }
+.carta img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 button {
   margin-top: 20px;
   padding: 12px 25px;
-  background: #f48fb1; /* Rosa */
+  background: #f48fb1; 
   color: #111;
   border: none;
   border-radius: 6px;
@@ -96,32 +104,17 @@ button:hover { background-color: #f06292; }
   max-width: 90%;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   text-align: center;
-  border: 1px solid #f48fb1; /* Rosa */
+  border: 1px solid #f48fb1; 
 }
 .modal-content h3 {
   margin-bottom: 15px;
-  color: #f48fb1; /* Rosa */
+  color: #f48fb1; 
 }
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
-}
-.options button {
-  background-color: #444;
-  color: #ddd;
-  border: 1px solid #f48fb1; /* Rosa */
-  padding: 10px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-.options button:hover { background-color: #555; }
 #respuestaInput {
   margin-top: 15px;
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #f48fb1; /* Rosa */
+  border: 1px solid #f48fb1; 
   width: 80%;
   background: #333;
   color: #eee;
@@ -129,7 +122,7 @@ button:hover { background-color: #f06292; }
 footer {
   text-align: center;
   padding: 20px;
-  color: #faa2c1; /* Rosa claro */
+  color: #faa2c1;
 }
 .brillo, .hoja, .estrella {
   pointer-events: none;
@@ -137,14 +130,14 @@ footer {
 }
 .brillo {
   width: 6px; height: 6px;
-  background: rgba(244,143,177,0.8); /* Rosa */
+  background: rgba(244,143,177,0.8); 
   border-radius: 50%;
   animation: parpadeo 3s ease-in-out infinite;
   z-index: 1;
 }
 .hoja {
   width: 20px; height: 20px;
-  background: linear-gradient(45deg, #f06292, #f48fb1); /* Rosa */
+  background: linear-gradient(45deg, #f06292, #f48fb1); 
   border-radius: 50% 50% 0 50%;
   transform: rotate(45deg);
   animation: caer 8s linear infinite;
@@ -160,6 +153,7 @@ footer {
 @keyframes caer { 0%{transform:translateY(-10%) rotate(0deg);opacity:0;} 10%{opacity:1;} 100%{transform:translateY(110vh) rotate(360deg);opacity:0;} }
 @keyframes parpadeo { 0%,100%{opacity:0.8;} 50%{opacity:0.2;} }
 @keyframes moverEstrella {0%{transform:translate(0,0);opacity:1;}100%{transform:translate(50vw,100vh);opacity:0;}}
+
 </style>
 </head>
 <body>
@@ -178,15 +172,19 @@ footer {
 
 <div class="sobre" id="sobre">
   <div class="carta">
-    <h2>Hola, mi niña preciosa c:</h2>
-    <p id="textoCarta"></p>
-  </div>
+  <h2>Hola, mi niña preciosa c:</h2>
+  <img src="foto1.jpg.jpeg" alt="Foto 1" style="width: 100%; max-width: 400px; margin-bottom: 10px; border-radius: 12px;">
+  <img src="foto2.jpg.jpeg" alt="Foto 2" style="width: 100%; max-width: 400px; margin-bottom: 10px; border-radius: 12px;">
+  <img src="foto3.jpg.jpeg" alt="Foto 3" style="width: 100%; max-width: 400px; margin-bottom: 20px; border-radius: 12px;">
+  <p id="textoCarta"></p>
+</div>
+
+
 </div>
 
 <div class="modal" id="modalPregunta" style="display: none;">
 <div class="modal-content">
   <h3 id="pregunta">Ingresa contraseña</h3>
-  <div class="options" id="opciones"></div>
   <input type="text" id="respuestaInput" placeholder="Escribe tu contraseña aquí">
   <button id="btnEnviar">Enviar</button>
 </div>
@@ -202,7 +200,6 @@ const contraseñaCorrecta = "t ama tu nobio robloxiano";
 
 const modal = document.getElementById('modalPregunta');
 const btnAbrir = document.getElementById('btnAbrir');
-const opcionesDiv = document.getElementById('opciones');
 const input = document.getElementById('respuestaInput');
 const btnEnviar = document.getElementById('btnEnviar');
 
@@ -211,18 +208,12 @@ btnAbrir.addEventListener('click', () => {
   btnAbrir.style.cursor = "not-allowed";
   btnAbrir.style.opacity = 0.6;
   modal.style.display = 'flex';
-
-  document.getElementById('pregunta').innerText = "Ingresa contraseña";
-  opcionesDiv.style.display = 'none';
-  input.style.display = 'block';
-  btnEnviar.style.display = 'block';
 });
 
 btnEnviar.addEventListener('click', verificarContraseña);
 
 function verificarContraseña(){
   const respuesta = input.value.trim();
-
   if(respuesta === contraseñaCorrecta){
     modal.style.display = 'none';
     abrirCarta();
@@ -290,4 +281,3 @@ function iniciarDecoraciones(){
 </script>
 </body>
 </html>
-
