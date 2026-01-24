@@ -154,16 +154,21 @@ footer {
 @keyframes parpadeo { 0%,100%{opacity:0.8;} 50%{opacity:0.2;} }
 @keyframes moverEstrella {0%{transform:translate(0,0);opacity:1;}100%{transform:translate(50vw,100vh);opacity:0;}}
 
+#playerContainer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: 300px;
+  max-width: 90vw;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #f48fb1;
+}
 </style>
 </head>
 <body>
-
-<!-- Agregar el elemento de audio -->
-<audio id="musicaFondo" loop>
-  <source src="https://api.soundcloud.com/tracks/148125843/stream?client_id=7n24euJujQlayLqBs4lej8oG9HHtF2uz" type="audio/mpeg">
-  Tu navegador no soporta audio.
-</audio>
-
 <script>
   document.title = "Te amo mucho Fersita :3";
 </script>
@@ -185,7 +190,6 @@ footer {
   <img src="foto3.jpg.jpeg" alt="Foto 3" style="width: 100%; max-width: 400px; margin-bottom: 20px; border-radius: 12px;">
   <p id="textoCarta"></p>
 </div>
-
 </div>
 
 <div class="modal" id="modalPregunta" style="display: none;">
@@ -195,6 +199,9 @@ footer {
   <button id="btnEnviar">Enviar</button>
 </div>
 </div>
+
+<!-- Contenedor para el reproductor de SoundCloud, oculto al inicio -->
+<div id="playerContainer" style="display:none;"></div>
 
 <footer>
 <p><strong>Contraseña:</strong> cultura africana </p>
@@ -208,6 +215,7 @@ const modal = document.getElementById('modalPregunta');
 const btnAbrir = document.getElementById('btnAbrir');
 const input = document.getElementById('respuestaInput');
 const btnEnviar = document.getElementById('btnEnviar');
+const playerContainer = document.getElementById('playerContainer');
 
 btnAbrir.addEventListener('click', () => {
   btnAbrir.disabled = true;
@@ -242,12 +250,14 @@ Te pienso, te extraño y te quiero muchísimo. Más de lo que cualquier carta pu
 Así que sí… un mes y contando. Y espero que sean muchos más, llenos de momentos que no hemos vivido todavía, pero que sé que serán increíbles porque los compartiremos juntos.
 
 Te extraño, Fer. De menos infinito hasta infinito, y más allá de todo lo que podamos imaginar.
+
 `;
 
 function abrirCarta(){
   document.getElementById('sobre').classList.add('abierto');
   escribirCarta();
   iniciarDecoraciones();
+  reproducirMusica();
 }
 
 function escribirCarta(){
@@ -295,6 +305,15 @@ function iniciarDecoraciones(){
     document.body.appendChild(estrella);
     setTimeout(()=>estrella.remove(),20000);
   }
+}
+
+function reproducirMusica(){
+  // Aquí agregamos el iframe para reproducir "Lover Is A Day" automáticamente
+  playerContainer.style.display = 'block';
+  playerContainer.innerHTML = `
+  <iframe width="100%" height="166" scrolling="no" frameborder="no"
+  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/doubeltonky/lover-is-a-day&auto_play=true&hide_related=true&show_comments=false&show_user=false"></iframe>
+  `;
 }
 </script>
 </body>
