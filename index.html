@@ -154,21 +154,16 @@ footer {
 @keyframes parpadeo { 0%,100%{opacity:0.8;} 50%{opacity:0.2;} }
 @keyframes moverEstrella {0%{transform:translate(0,0);opacity:1;}100%{transform:translate(50vw,100vh);opacity:0;}}
 
-#playerContainer {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-  width: 300px;
-  max-width: 90vw;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 10px #f48fb1;
-}
 </style>
 </head>
 <body>
+
+<!-- Agregar el elemento de audio oculto -->
+<audio id="musicaFondo" loop style="display:none;">
+  <source src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/doubeltonky/lover-is-a-day&auto_play=true&hide_related=true&show_comments=false&show_user=false" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
 <script>
   document.title = "Te amo mucho Fersita :3";
 </script>
@@ -200,9 +195,6 @@ footer {
 </div>
 </div>
 
-<!-- Contenedor para el reproductor de SoundCloud, oculto al inicio -->
-<div id="playerContainer" style="display:none;"></div>
-
 <footer>
 <p><strong>Contraseña:</strong> cultura africana </p>
 <p>Espero te guste. Con mucho amor, cardielo hermoso guapo beyo ♡ </p>
@@ -215,7 +207,7 @@ const modal = document.getElementById('modalPregunta');
 const btnAbrir = document.getElementById('btnAbrir');
 const input = document.getElementById('respuestaInput');
 const btnEnviar = document.getElementById('btnEnviar');
-const playerContainer = document.getElementById('playerContainer');
+const musica = document.getElementById('musicaFondo');
 
 btnAbrir.addEventListener('click', () => {
   btnAbrir.disabled = true;
@@ -308,12 +300,7 @@ function iniciarDecoraciones(){
 }
 
 function reproducirMusica(){
-  // Aquí agregamos el iframe para reproducir "Lover Is A Day" automáticamente
-  playerContainer.style.display = 'block';
-  playerContainer.innerHTML = `
-  <iframe width="100%" height="166" scrolling="no" frameborder="no"
-  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/doubeltonky/lover-is-a-day&auto_play=true&hide_related=true&show_comments=false&show_user=false"></iframe>
-  `;
+  musica.play().catch(() => {});
 }
 </script>
 </body>
