@@ -157,13 +157,6 @@ footer {
 </style>
 </head>
 <body>
-
-<!-- Agregar el elemento de audio oculto -->
-<audio id="musicaFondo" loop style="display:none;">
-  <source src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/doubeltonky/lover-is-a-day&auto_play=true&hide_related=true&show_comments=false&show_user=false" type="audio/mpeg">
-  Tu navegador no soporta audio.
-</audio>
-
 <script>
   document.title = "Te amo mucho Fersita :3";
 </script>
@@ -200,6 +193,12 @@ footer {
 <p>Espero te guste. Con mucho amor, cardielo hermoso guapo beyo ♡ </p>
 </footer>
 
+<!-- AUDIO DE FONDO -->
+<audio id="musicaFondo" loop style="display:none;">
+  <source src="CUCO_-_LOVER_IS_A_DAY_-_LOVER_IS_A_DAY_(mp3.pm).mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
 <script>
 const contraseñaCorrecta ="cultura africana";
 
@@ -207,7 +206,7 @@ const modal = document.getElementById('modalPregunta');
 const btnAbrir = document.getElementById('btnAbrir');
 const input = document.getElementById('respuestaInput');
 const btnEnviar = document.getElementById('btnEnviar');
-const musica = document.getElementById('musicaFondo');
+const musicaFondo = document.getElementById('musicaFondo');
 
 btnAbrir.addEventListener('click', () => {
   btnAbrir.disabled = true;
@@ -249,7 +248,9 @@ function abrirCarta(){
   document.getElementById('sobre').classList.add('abierto');
   escribirCarta();
   iniciarDecoraciones();
-  reproducirMusica();
+  musicaFondo.play().catch(() => {
+    console.log("Requiere interacción del usuario para reproducir audio.");
+  });
 }
 
 function escribirCarta(){
@@ -297,10 +298,6 @@ function iniciarDecoraciones(){
     document.body.appendChild(estrella);
     setTimeout(()=>estrella.remove(),20000);
   }
-}
-
-function reproducirMusica(){
-  musica.play().catch(() => {});
 }
 </script>
 </body>
