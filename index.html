@@ -157,6 +157,13 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- Agregar el elemento de audio -->
+<audio id="musicaFondo" loop>
+  <source src="https://api.soundcloud.com/tracks/148125843/stream?client_id=7n24euJujQlayLqBs4lej8oG9HHtF2uz" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
 <script>
   document.title = "Te amo mucho Fersita :3";
 </script>
@@ -179,7 +186,6 @@ footer {
   <p id="textoCarta"></p>
 </div>
 
-
 </div>
 
 <div class="modal" id="modalPregunta" style="display: none;">
@@ -196,7 +202,7 @@ footer {
 </footer>
 
 <script>
-const contraseñaCorrecta = "cultura africana";
+const contraseñaCorrecta ="cultura africana";
 
 const modal = document.getElementById('modalPregunta');
 const btnAbrir = document.getElementById('btnAbrir');
@@ -236,9 +242,7 @@ Te pienso, te extraño y te quiero muchísimo. Más de lo que cualquier carta pu
 Así que sí… un mes y contando. Y espero que sean muchos más, llenos de momentos que no hemos vivido todavía, pero que sé que serán increíbles porque los compartiremos juntos.
 
 Te extraño, Fer. De menos infinito hasta infinito, y más allá de todo lo que podamos imaginar.
-
-
- `;
+`;
 
 function abrirCarta(){
   document.getElementById('sobre').classList.add('abierto');
